@@ -26,7 +26,7 @@ func main() {
 	r.GET("/exchangeRate", func(c *gin.Context) {
 		
 		//check if correct response
-		if data, err := handler(c); err != nil {
+		if data, err := getExchangeRate(c); err != nil {
 			c.JSON(200, gin.H{
 				"Error": err.Error(),
 			})	
@@ -41,7 +41,7 @@ func main() {
 	r.Run(":9000")
 }
 
-func handler(c *gin.Context) ([]ResponseItem, error) {
+func getExchangeRate(c *gin.Context) ([]ResponseItem, error) {
 	var responseArray []ResponseItem
 	
 	//parse data
